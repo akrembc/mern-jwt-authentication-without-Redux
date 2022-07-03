@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Driver = require("../../models/Driver");
+const User = require("../../models/User");
 // documentation: https://express-validator.github.io/docs/
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
@@ -25,12 +25,12 @@ router.post(
     }
 
     // validation by mongoose:
-    // const validation = driver.validateSync();
+    // const validation = user.validateSync();
     // console.log(validation.errors.email.properties.message);
 
     try {
       const { firstName, lastName, email, password } = req.body;
-      const result = await Driver.findOne({ email });
+      const result = await User.findOne({ email });
       if (result) {
         return res.status(403).send({
           errors: [{ msg: "Email is already used for another account" }],
@@ -40,15 +40,15 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      const driver = new Driver({
+      const user = new User({
         firstName,
         lastName,
         email,
         password: hashedPassword,
       });
-      const user = await driver.save();
+      const savedUser = await user.save();
 
-      const payload = { userId: user._id };
+      const payload = { userId: savedUser._id };
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: 15 * 60,
       });

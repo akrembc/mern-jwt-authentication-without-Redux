@@ -77,19 +77,11 @@ const Register = () => {
     } catch (error) {
       setLoading(false);
       setSignupError(error.response.data.errors?.[0].msg);
-      // console.log("error", error.response);
-      // console.log("register error", error.response.data.errors?.[0].msg);
     }
   };
 
   return (
     <div className="row row-cols-3 shadow my-3">
-      <section className="col-12 text-align text-center mt-3">
-        <h2>
-          Sign up and experience Super<span className="text-danger">Uber</span>{" "}
-          now
-        </h2>
-      </section>
       <div className="col-12 col-lg-6">
         <img
           src="/superuber.webp"
@@ -97,7 +89,7 @@ const Register = () => {
           style={{ maxWidth: "100%", minHeight: "100%" }}
         />
       </div>
-      <section className="col-12 col-lg-6 my-3 py-3">
+      <div className="col-12 col-lg-6 my-3 py-3">
         <Form
           formFields={formFields}
           handleSubmit={handleSubmit}
@@ -106,7 +98,7 @@ const Register = () => {
           formError={signupError}
           setFormError={setSignupError}
         />
-      </section>
+      </div>
     </div>
   );
 };

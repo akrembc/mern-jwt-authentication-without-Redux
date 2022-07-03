@@ -3,18 +3,17 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Driver = require("../../models/Driver");
+const User = require("../../models/User");
 const auth = require("../../middlewares/auth");
 
 // @route   GET /api/auth
 // @desc    get user data
 // @access  Private
 router.get("/", auth, async (req, res) => {
-  console.log("at GET api/auth");
   try {
     const userId = req.user.userId;
-    const user = await Driver.findById(userId.toString()).select("-password");
-    console.log("user data", user);
+    const user = await User.findById(userId.toString()).select("-password");
+
     res.status(200).json(user);
   } catch (error) {
     res.status(500).send("server error");
@@ -32,7 +31,7 @@ router.post(
     try {
       const { email, password } = req.body;
 
-      const result = await Driver.findOne({ email: email.toLowerCase() });
+      const result = await User.findOne({ email: email.toLowerCase() });
 
       if (!result)
         return res

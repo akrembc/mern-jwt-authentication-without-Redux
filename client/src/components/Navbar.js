@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Super<span className="text-danger">Uber</span>
+          My<span className="text-danger">Site</span>
         </a>
         {/* hamburger menu */}
         {/* <div className="me-auto"></div> */}

@@ -8,7 +8,6 @@ export default function (key) {
   let paramValue = searchParams.get(key);
 
   let value = useMemo(() => JSURL.parse(paramValue), [paramValue]);
-  console.log(value, JSURL.stringify(value));
 
   let setValue = React.useCallback(
     (newValue, options) => {

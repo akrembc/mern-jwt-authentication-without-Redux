@@ -32,7 +32,6 @@ const Home = () => {
       // so when we refresh current page, the model won't be shown
       navigate(location.pathname, { replace: true }); // or pass empty object
     } else {
-      console.log("don't navigate");
       setShowLoginModal(false);
       setLoginError("");
     }

@@ -3,7 +3,7 @@ import { useMatch } from "react-router-dom";
 
 import ProtectedRoute from "../components/ProtectedRoute";
 import Home from "../components/Home";
-import MyProtectedRoute from "../components/MyProtectedRoute";
+import Profile from "../components/Profile";
 import Register from "../components/Register";
 
 export const useRouting = (authenticated) => {
@@ -32,7 +32,7 @@ export const useRouting = (authenticated) => {
                 : null,
           }}
         >
-          <MyProtectedRoute />
+          <Profile />
         </ProtectedRoute>
       ),
     },

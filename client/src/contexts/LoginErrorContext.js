@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 
 export const LoginErrorContext = React.createContext();
 const UpdateLoginErrorContext = React.createContext();
@@ -13,10 +13,6 @@ export function useLoginErrorUpdate() {
 
 const LoginErrorProvider = ({ children }) => {
   const [loginError, setLoginError] = useState(() => "");
-
-  useEffect(() => {
-    console.log("reload login error");
-  });
 
   return (
     <LoginErrorContext.Provider value={loginError}>
